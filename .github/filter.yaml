@@ -1,0 +1,7 @@
+app:
+  - .github/filter.yaml
+  - .github/workflows/app-*.yaml
+  - practices/**/*
+  - .gitignore
+  - Cargo.lock
+  - Cargo.toml

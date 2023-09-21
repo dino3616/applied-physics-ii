@@ -1,0 +1,67 @@
+name: app test
+
+on: [push, pull_request]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  filter:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+    outputs:
+      app: ${{ steps.changes.outputs.app }}
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: check for file changes
+        id: changes
+        uses: dorny/paths-filter@v2
+        with:
+          token: ${{ github.token }}
+          filters: .github/filter.yaml
+
+  test:
+    runs-on: ubuntu-latest
+    needs: filter
+    if: ${{ needs.filter.outputs.app == 'true' }}
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+
+      - name: cache cargo
+        uses: actions/cache@v2
+        with:
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.toml') }}
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            target
+
+      - name: install rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+
+      - name: build
+        uses: actions-rs/cargo@v1
+        with:
+          command: build
+
+      - name: test
+        uses: actions-rs/cargo@v1
+        with:
+          command: test
+          args: -- --show-output
+
+  app-test-check:
+    runs-on: ubuntu-latest
+    needs: test
+    if: ${{ ! failure() }}
+    steps:
+      - name: check
+        run: echo "app test is successfully executed."

@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  app:
+    container_name: applied-physics-ii-development-app
+    build:
+      context: ../
+      dockerfile: ./docker/Dockerfile.development
+    volumes:
+      - type: bind
+        source: ../
+        target: /workspaces/applied-physics-ii/
+      - type: volume
+        source: target
+        target: /workspaces/applied-physics-ii/target/
+    tty: true
+
+volumes:
+  target:
+    driver: local

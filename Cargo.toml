@@ -1,0 +1,21 @@
+[package]
+name = "applied-physics-ii"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+anyhow = "1.0.75"
+dotenv = "0.15.0"
+serde = { version = "1.0.188", features = ["derive"] }
+serde_json = "1.0.107"
+thiserror = "1.0.48"
+
+[[bin]]
+name = "part1-prac1"
+path = "./practices/part1/prac1/main.rs"
+
+[[bin]]
+name = "part1-prac2"
+path = "./practices/part1/prac2/main.rs"
