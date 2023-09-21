@@ -1,0 +1,31 @@
+{
+  "name": "applied-physics-ii",
+  "workspaceFolder": "/workspaces/applied-physics-ii/",
+  "dockerComposeFile": ["../docker/docker-compose.development.yaml"],
+  "service": "app",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "adam-bender.commit-message-editor",
+        "christian-kohler.path-intellisense",
+        "eamodio.gitlens",
+        "editorconfig.editorconfig",
+        "esbenp.prettier-vscode",
+        "github.copilot",
+        "github.copilot-labs",
+        "github.vscode-github-actions",
+        "github.vscode-pull-request-github",
+        "gruntfuggly.todo-tree",
+        "hbenl.vscode-test-explorer",
+        "mikestead.dotenv",
+        "rust-lang.rust-analyzer",
+        "serayuzgur.crates",
+        "tamasfe.even-better-toml",
+        "usernamehw.errorlens",
+        "vadimcn.vscode-lldb",
+        "visualstudioexptteam.vscodeintellicode",
+        "wmaurer.change-case"
+      ]
+    }
+  }
+}

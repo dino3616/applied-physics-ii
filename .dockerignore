@@ -1,0 +1,9 @@
+# debug
+**/*.log*
+
+# deliverable
+**/target/
+
+# env file
+**/.env*
+!**/.env.example
