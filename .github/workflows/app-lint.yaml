@@ -15,7 +15,7 @@ jobs:
       app: ${{ steps.changes.outputs.app }}
     steps:
       - name: checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: check for file changes
         id: changes
@@ -30,7 +30,7 @@ jobs:
     if: ${{ needs.filter.outputs.app == 'true' }}
     steps:
       - name: checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: cache cargo
         uses: actions/cache@v3
